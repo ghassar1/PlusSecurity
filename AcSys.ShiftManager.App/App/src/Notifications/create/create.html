@@ -1,0 +1,67 @@
+﻿<div>    
+    <!-- begin row -->
+    <div class="row">
+        <!-- begin col-12 -->
+        <div class="col-md-12">
+            <!-- begin panel -->
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>-->
+                    </div>
+                    <h4 class="panel-title">{{currentPage.title}}</h4>
+                </div>
+                <div class="panel-body">
+                    <form name="form" class="form-horizontal margin-bottom-0" ng-submit="create(form)" novalidate>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Notification Title: <span class="text-danger">*</span></label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control input-lg" ng-model="formData.title" name="title" placeholder="Required" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Target Roles: </label>
+                            <div class="col-sm-10">
+                                <!--<ul id="jquery-tagIt-recipients"></ul>
+                                <p>Enter one of: "SuperAdmin, Admin, HRManager, RecManager, Employee". Leave Empty to send to all system users.</p>-->
+
+                                <tags-input name="recipients" ng-model="recipientRoles" display-property="name" key-property="id" type="text" replace-spaces-with-dashes="false"
+                                            add-from-autocomplete-only="true" add-on-enter="true" add-on-space="true" add-on-comma="true" add-on-blur="true" add-on-paste="true"
+                                            min-length="0" max-length="1000" min-tags="0" max-tags="1000" allow-leftover-text="false"
+                                            spellcheck="true" placeholder="Enter Recipients">
+                                    <auto-complete source="loadTags($query)" display-property="name" debounce-delay="100" min-length="1" max-results-to-show="10"
+                                                   highlight-matched-text="true" load-on-down-arrow="true" load-on-empty="false" select-first-match="true">
+                                    </auto-complete>
+                                </tags-input>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Notification Text: <span class="text-danger">*</span></label>
+                            <div class="col-sm-10">
+                                <textarea ng-model="formData.text" name="text" class="form-control input-lg" placeholder="Notification Text" rows="10" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2"></label>
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-success btn-lg">Create</button>
+                                <a href="javascript:;" ui-sref="app.notifications.list" class="btn btn-default btn-lg">Back</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- end panel -->
+        </div>
+        <!-- end col-12 -->
+    </div>
+    <!-- end row -->
+</div>

@@ -1,0 +1,106 @@
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>-->
+                </div>
+                <h4 class="panel-title">{{currentPage.title}}</h4>
+            </div>
+            <div class="panel-body">
+                <div class="col col-sm-9">
+
+                    <div class="form-group">
+                        <b class="col-sm-3">User Status: </b>
+                        <span class="badge badge-square badge-primary">{{model.entityStatusDesc}}</span><br />
+                    </div>
+                    <div class="form-group">
+                        <b class="col-sm-3">User Type: </b>
+                        <span>{{model.role.name}}</span><br />
+                    </div>
+                    <div class="form-group">
+                        <b class="col-sm-3">Username: </b>
+                        <span>{{model.userName}}</span><br />
+                    </div>
+                    <div class="form-group">
+                        <b class="col-sm-3">First Name: </b>
+                        <span>{{model.firstName}}</span><br />
+                    </div>
+                    <div class="form-group">
+                        <b class="col-sm-3">Last Name: </b>
+                        <span>{{model.lastName}}</span><br />
+                    </div>
+                    <div class="form-group">
+                        <b class="col-sm-3">Email: </b>
+                        <span>{{model.email}}</span><br />
+                    </div>
+                    <div class="form-group">
+                        <b class="col-sm-3">Date of Birth: </b>
+                        <span>{{model.dateOfBirth | date:'dd MMMM yyyy'}}</span><br />
+                    </div>
+                    <div class="form-group">
+                        <b class="col-sm-3">Mobile: </b>
+                        <span>{{model.mobile}}</span><br />
+                    </div>
+                    <div class="form-group">
+                        <b class="col-sm-3">Phone Number: </b>
+                        <span>{{model.phoneNumber}}</span><br />
+                    </div>
+                    <div class="form-group">
+                        <b class="col-sm-3">Work Number: </b>
+                        <span>{{model.workNumber}}</span><br />
+                    </div>
+                    <div class="form-group">
+                        <b class="col-sm-3">Location: </b>
+                        <span>{{model.location}}</span><br />
+                    </div>
+                    <div class="form-group">
+                        <b class="col-sm-3">Driving License: </b>
+                        <span>{{model.hasDrivingLicense ? 'Yes':'No'}}</span><br />
+                    </div>
+
+                    <div class="form-group">
+                        <b class="col-sm-3">Address: </b>
+                        <span>{{model.address}}</span><br />
+                    </div>
+
+                    <div class="form-group">
+                        <b class="col-sm-3">Post Code: </b>
+                        <span>{{model.postCode}}</span><br />
+                    </div>
+
+                    <div class="form-group">
+                        <b class="col-sm-3">City: </b>
+                        <span>{{model.city}}</span><br />
+                    </div>
+
+                    <div ng-if="isEmployeesModule" class="form-group">
+                        <b class="col-sm-3">Employee Group: </b>
+                        <span>{{ model.employeeGroup ? model.employeeGroup.name : '' }}</span><br />
+                    </div>
+
+                </div>
+
+                <div class="col col-sm-3">
+                    <h4>Actions</h4>
+                    <a ng-if="model.entityStatus !== 2  && model.entityStatus !== 3 && (isProfilePage || canManage)" ng-href="{{ getUpdateUrl() }}" class="btn btn-lg btn-block btn-success">Update</a>
+
+                    <a href="javascript:;" ng-if="!isProfilePage && canManage && model.entityStatus !== 1" ng-click="activate()" class="btn btn-lg btn-block btn-success">Activate</a>
+                    <a href="javascript:;" ng-if="(!isProfilePage && canManage)  && model.entityStatus === 1" ng-click="deactivate()" class="btn btn-lg btn-block btn-warning">Deactivate</a>
+                    <a href="javascript:;" ng-if="!isProfilePage && canManage && model.entityStatus === 1" ng-click="del()" class="btn btn-lg btn-block btn-danger">Delete</a>
+
+                    <a ng-href="{{ getBackUrl() }}" class="btn btn-lg btn-block btn-default">Back</a>
+                </div>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-12 -->
+</div>
+<!-- end row -->

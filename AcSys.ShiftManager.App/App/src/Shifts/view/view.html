@@ -1,0 +1,98 @@
+﻿<!-- begin row -->
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>-->
+                </div>
+                <h4 class="panel-title">{{currentPage.title}}</h4>
+            </div>
+            <div class="panel-body form-horizontal form-bordered">
+
+                <div class="row">
+
+                    <div class="col col-sm-9">
+
+                        <div class="form-group">
+                            <h5><strong class="col-sm-3">Status: </strong></h5>
+                            <div class="col-sm-9">
+                                <!--<span ng-if="model.status === 0" class="badge badge-info">{{model.statusDesc}}</span>
+                                <span ng-if="model.status === 1" class="badge badge-success">{{model.statusDesc}}</span>
+                                <span ng-if="model.status === 2" class="badge badge-danger">{{model.statusDesc}}</span>-->
+
+                                <span ng-if="shiftInProgress" class="badge badge-success">In Progress</span>
+                                <span ng-if="showStatus" class="badge"
+                                      ng-class="{'badge-info': model.status === 0, 'badge-success': model.status === 1, 'badge-danger': model.status === 2}">
+                                    {{model.statusDesc}}
+                                </span>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h5><strong class="col-sm-3">Allocated To: </strong></h5>
+                            <div class="col-sm-9">
+                                <span ng-if="model.employee && model.employee !== null">
+                                    {{ model.employee.firstName + ' ' + model.employee.lastName + ' <' + model.employee.email + '>' }}
+                                </span>
+                                <span ng-if="!model.employee || model.employee === null" class="badge badge-success">Open</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h5><strong class="col-sm-3">Title: </strong></h5>
+                            <div class="col-sm-9">{{model.title}}</div>
+                        </div>
+                        <div class="form-group">
+                            <h5><strong class="col-sm-3">Break (Mins): </strong></h5>
+                            <div class="col-sm-9">{{model.totalBreakMins}}</div>
+                        </div>
+                        <div class="form-group">
+                            <h5><strong class="col-sm-3">Duration: </strong></h5>
+                            <div class="col-sm-9">{{model.startTime | date:'dd MMMM yyyy hh:mm a'}} to {{model.endTime | date:'dd MMMM yyyy hh:mm a'}}</div>
+                        </div>
+                        <div class="form-group">
+                            <h5><strong class="col-sm-3">Attendance: </strong></h5>
+                            <div class="col-sm-9">
+                                <span ng-if="model.clockInTime">
+                                    {{model.clockInTime | date:'dd MMMM yyyy hh:mm a'}} to {{model.clockOutTime | date:'dd MMMM yyyy hh:mm a'}}
+                                </span>
+                                <span ng-if="!model.clockInTime" class="badge badge-default">No Clock-In</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h5><strong class="col-sm-3">Late Mins: </strong></h5>
+                            <div class="col-sm-9">{{model.lateMins}}</div>
+                        </div>
+                        <div class="form-group">
+                            <h5><strong class="col-sm-3">Notes: </strong></h5>
+                            <div class="col-sm-9">{{model.notes}}</div>
+                        </div>
+                    </div>
+
+                    <div class="col col-sm-3">
+                        <h4>Actions</h4>
+                        <a ng-if="canClockIn" ng-click="clockIn()" href="javascript:;" class="btn btn-lg btn-block btn-success">Clock In</a>
+                        <a ng-if="canClockOut" ng-click="clockOut()" href="javascript:;" class="btn btn-lg btn-block btn-danger">Clock Out</a>
+
+                        <a ng-if="userCanTakeShift" ng-click="takeShift()" href="javascript:;" class="btn btn-lg btn-block btn-success">Take Shift</a>
+                        <a ng-if="userCanLeaveShift" ng-click="leaveShift()" href="javascript:;" class="btn btn-lg btn-block btn-success">Leave Shift</a>
+
+                        <!--<a ng-if="User.hasAnyRole('RecManager, HRManager')" ui-sref="app.shifts.update({id: id})" class="btn btn-lg btn-block btn-primary">Update</a>-->
+                        <a ng-if="canManage" ui-sref="app.shifts.update({id: id})" class="btn btn-lg btn-block btn-primary">Update</a>
+                        <a ng-if="canManage" href="javascript:;" ng-click="del()" class="btn btn-lg btn-block btn-danger">Delete</a>
+                        <a ui-sref="app.shifts.list" class="btn btn-lg btn-block btn-default">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-12 -->
+</div>
+<!-- end row -->

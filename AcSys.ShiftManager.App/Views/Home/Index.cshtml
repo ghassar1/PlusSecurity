@@ -1,0 +1,63 @@
+﻿<p>
+    <a class="btn btn-default" href="javascript:void(0);" onclick="getToken();">Get Token</a>
+    <a class="btn btn-default" href="javascript:void(0);" onclick="callMe();">Call Me</a>
+</p>
+
+@section SPAViews {
+    @Html.Partial("_Home")
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/app")
+
+
+<script>
+    var access_token = '';
+    function getToken() {
+
+        var _uri = 'http://localhost:64736/Token';
+
+        var loginData = {
+            client_id: 'web',
+            grant_type: 'password',
+            response_type: 'token',
+            username: 'adeel_scorpion@hotmail.com',
+            password: 'P@ssw0rd'
+        };
+
+        $.ajax({
+            method: 'post',
+            url: _uri,
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            //headers: {
+            //    'Authorization': 'Bearer ' + app.dataModel.getAccessToken()
+            //},
+            data: $.param(loginData),
+            success: function (data) {
+                access_token = data.access_token;
+                console.log('Auth Data: ' + JSON.stringify(data));
+            }
+        });
+    }
+
+    function callMe() {
+
+        access_token = app.dataModel.getAccessToken();
+
+        var _uri = 'http://localhost:64736/api/me';
+
+        $.ajax({
+            method: 'get',
+            url: _uri,
+            contentType: "application/json",
+            headers: {
+                'Authorization': 'Bearer ' + access_token
+            },
+            success: function (data) {
+                console.log('Me Data: ' + JSON.stringify(data));
+            }
+        });
+    }
+</script>
+}

@@ -1,0 +1,134 @@
+﻿<div>
+    <!-- begin row -->
+    <div class="row">
+
+        <!-- begin col-12 -->
+        <div class="col-md-12">
+
+            <!-- begin panel -->
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger dis" data-click="panel-remove"><i class="fa fa-times"></i></a>-->
+                    </div>
+                    <h4 class="panel-title">{{currentPage.title}}</h4>
+                </div>
+
+                <div class="panel-body">
+
+                    <div class="row">
+
+                        <div class="col col-sm-3">
+
+                            <ui-select ng-model="query.userId" class="">
+                                <ui-select-match placeholder="Select/Search a user in the list">
+                                    <span ng-bind="$select.selected.firstName + ' ' + $select.selected.lastName"></span>
+                                </ui-select-match>
+                                <ui-select-choices refresh="getUsers($select.search)" refresh-delay="1000" spinner-enabled="true"
+                                                   repeat="user.id as user in (users | filter: $select.search) track by user.id">
+                                    <div ng-bind-html="user.firstName + ' ' + user.lastName | highlight: $select.search"></div>
+                                    <small ng-bind-html="user.email  | highlight: $select.search"></small>
+                                </ui-select-choices>
+                            </ui-select>
+                            <!--<ui-select ng-model="query.user">
+                                <ui-select-match placeholder="Select a user in the list or search his name/email...">
+                                    <span ng-bind="$select.selected.firstName + ' ' + $select.selected.lastName"></span>
+                                </ui-select-match>
+                                <ui-select-choices refresh="getUsers($select.search)" refresh-delay="1000" spinner-enabled="true"
+                                                   repeat="user in (users | filter: $select.search) track by user.id">
+                                    <div>
+                                        <div>{{user.firstName + ' ' + user.lastName | highlight: $select.search}}</div>
+                                        <div>{{user.email}}</div>
+                                    </div>
+                                </ui-select-choices>
+                            </ui-select>-->
+                        </div>
+
+                        <div class="col col-sm-3">
+                            <input date-range-picker class="form-control date-picker" type="text"
+                                   ng-model="datePicker.date" options="datePicker.options"
+                                   min="''" max="''" placeholder="Date Range" />
+                        </div>
+
+                        <div class="col col-sm-3">
+                            <input type="search" ng-model="query.searchCriteria" ng-enter="list()" class="form-control" placeholder="Search Criteria">
+                        </div>
+
+                        <div class="col col-sm-3">
+                            <button ng-click="list()" class="btn btn-success m-r-5 m-b-5"><i class="fa fa-search"></i> Search</button>
+                            <button ng-click="reset()" class="btn btn-default m-r-5 m-b-5"><i class="fa fa-remove"></i> Reset</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <table datatable="ng" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Target</th>
+                                    <th>Operation</th>
+                                    <th>Description</th>
+                                    <th>Date/Time</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in model.items">
+                                    <td title="Unread" ui-sref="app.activityLogs.view({id: item.id})">
+                                        <span><a href="javascript:;">{{item.user.firstName}} {{item.user.lastName}}</a></span>
+                                    </td>
+                                    <td ui-sref="app.activityLogs.view({id: item.id})">
+                                        <span><a href="javascript:;">{{item.subjectTypeDesc}}</a></span>
+                                    </td>
+                                    <td ui-sref="app.activityLogs.view({id: item.id})">
+                                        <span><a href="javascript:;">{{item.typeDesc}}</a></span>
+                                    </td>
+                                    <td ui-sref="app.activityLogs.view({id: item.id})">
+                                        <span><a href="javascript:;">{{item.description}}</a></span>
+                                    </td>
+                                    <td ui-sref="app.activityLogs.view({id: item.id})">
+                                        <span><a href="javascript:;">{{item.dateTimeStamp | date:'dd MMMM yyyy hh:mm a'}}</a></span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <a ui-sref="app.activityLogs.view({id: item.id})" class="btn btn-success btn-sm"><i class="fa fa-info"></i></a>
+                                            <a ng-click="del(item.id)" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="pagination">
+                                <label>
+                                    Page Size:
+                                    <select ng-model="query.pageSize" ng-change="pageSizeChanged()" convert-to-number>
+                                        <option ng-repeat="pgs in pageSizes" value="{{pgs}}">{{pgs}}</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 pagination">
+                            <span class="pull-right">Showing Page {{model.pageNo}} of {{model.totalPages}}</span>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <ul class="pull-right" uib-pagination ng-model="query.pageNo" total-items="model.totalItems" items-per-page="query.pageSize" max-size="6" ng-change="list()"></ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end panel -->
+        </div>
+        <!-- end col-10 -->
+    </div>
+    <!-- end row -->
+</div>

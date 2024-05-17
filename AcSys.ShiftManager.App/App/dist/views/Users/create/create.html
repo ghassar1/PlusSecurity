@@ -1,0 +1,183 @@
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>-->
+                </div>
+                <h4 class="panel-title">{{currentPage.title}}</h4>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" name="form" ng-submit="create(form)" novalidate>
+                    <div class="col col-sm-9">
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">User Type <span class="text-danger">*</span></label>
+                            <div class="col-sm-6">
+                                <select ng-model="formData.role" name="role" class="form-control"
+                                        ng-options="role as role.name for role in roles track by role.id"
+                                        required>
+                                    <option value="" ng-selected="selected">Select User Type</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">First Name <span class="text-danger">*</span></label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" ng-model="formData.firstName" name="firstName" placeholder="Required" required />
+                                <!--<span ng-show="form.$submitted || form.userName.$touched">
+                                    <span ng-show="form.firstName.$error.required" class="text-danger">Enter your email address.</span>
+                                </span>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Last Name <span class="text-danger">*</span></label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" ng-model="formData.lastName" name="lastName" placeholder="Required" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Email <span class="text-danger">*</span></label>
+                            <div class="col-sm-6">
+                                <input type="email" class="form-control" ng-model="formData.email" name="emailAddress" placeholder="Required" required />
+                                <!--<span ng-show="form.$submitted || form.emailAddress.$touched">
+                                    <span ng-show="form.emailAddress.$error.required" class="text-danger">Enter your email address.</span>
+                                    <span ng-show="form.emailAddress.$error.email" class="text-danger">This is not a valid email.</span>
+                                </span>-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Username <span class="text-danger">*</span></label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" ng-model="formData.userName" name="userName" placeholder="Required" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Password <span class="text-danger">*</span></label>
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control" ng-model="formData.password" name="password" placeholder="Password" />
+                                <span class="text-warning">Leave empty if you want to set the default password.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Confirm Password <span class="text-danger">*</span></label>
+                            <div class="col-sm-6">
+                                <input type="password" class="form-control" ng-model="formData.confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Work Number</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" ng-model="formData.workNumber" name="workNumber" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Location</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" ng-model="formData.location" name="location" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Has Driving License</label>
+                            <div class="col-sm-6">
+                                <input type="checkbox" class="form-control" ng-model="formData.hasDrivingLicense" name="hasDrivingLicense" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Date of Birth <span class="text-danger">*</span></label>
+                            <div class="col-sm-6">
+                                <!--<input type="date" class="form-control" ng-model="formData.dateOfBirth" />-->
+                                <input type="text" name="dateOfBirth" ng-model="formData.dateOfBirth" class="form-control"
+                                       ng-click="dateOfBirthPopup.open()" datepicker-options="dateOfBirthPopup.dateOptions"
+                                       uib-datepicker-popup="{{dateOfBirthPopup.dateFormat}}" alt-input-formats="dateOfBirthPopup.altInputFormats"
+                                       is-open="dateOfBirthPopup.opened" close-text="Close" ng-required="false" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Mobile <span class="text-danger">*</span></label>
+                            <div class="col-sm-6">
+                                <input type="tel" class="form-control" ng-model="formData.mobile" name="mobile" placeholder="Required" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Phone Number</label>
+                            <div class="col-sm-6">
+                                <input type="tel" class="form-control" ng-model="formData.phoneNumber" name="phoneNumber" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Address</label>
+                            <div class="col-sm-6">
+                                <!--<input type="text" class="form-control" ng-model="formData.address" name="address" />-->
+                                <textarea name="address" class="form-control" ng-model="formData.address" rows="5"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Post Code</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" ng-model="formData.postCode" name="location" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">City</label>
+                            <div class="col-md-6">
+                                <select class="default-select2 form-control" ng-model="formData.city">
+                                    <optgroup label="England">
+                                        <option ng-repeat="city in citiesInEngland" value="{{city}}">{{city}}</option>
+                                    </optgroup>
+
+                                    <optgroup label="Northern Ireland">
+                                        <option ng-repeat="city in citiesInNorthernIreland" value="{{city}}">{{city}}</option>
+                                    </optgroup>
+
+                                    <optgroup label="Scotland">
+                                        <option ng-repeat="city in citiesInScotland" value="{{city}}">{{city}}</option>
+                                    </optgroup>
+
+                                    <optgroup label="Wales">
+                                        <option ng-repeat="city in citiesInWales" value="{{city}}">{{city}}</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div ng-if="isEmployeesModule && employeeGroups && employeeGroups.length > 0" class="form-group">
+                            <label class="control-label col-sm-3">Employee Group <span class="text-danger">*</span></label>
+                            <div class="col-sm-6">
+                                <select ng-model="formData.employeeGroup" name="employeeGroup" class="form-control"
+                                        ng-options="employeeGroup as employeeGroup.name for employeeGroup in employeeGroups track by employeeGroup.id">
+                                    <option value="" ng-selected="selected">None</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col col-sm-3">
+                        <h4>Actions</h4>
+                        <button type="submit" class="btn btn-lg btn-block btn-success">Create</button>
+                        <a ng-href="{{getBackUrl()}}" class="btn btn-lg btn-block btn-default">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-12 -->
+</div>
+<!-- end row -->

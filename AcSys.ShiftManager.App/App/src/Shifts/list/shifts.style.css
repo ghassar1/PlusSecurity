@@ -1,0 +1,51 @@
+﻿.selected-day-bg-event {
+    /*background-color: #ff9f89 !important;*/
+    background-color: steelblue !important;
+}
+
+.shift-event {
+    border-radius: 3px !important;
+    margin: 3px;
+    padding: 3px;
+    cursor: pointer !important;
+}
+
+.complete-shift-event {
+    background-color: #00acac !important;
+}
+
+.missed-shift-event {
+    background-color: #ff5b57 !important;
+}
+
+.open-shift-event {
+    background-color: #5a9d76 !important;
+}
+
+.allocated-shift-event {
+    background-color: #6aa4c1 !important;
+}
+
+.late-shift-event {
+    background-color: #f59c1a !important;
+}
+
+/*.open-shift-event div.fc-bg {
+}
+
+.open-shift-event div.fc-content {
+}
+
+.open-shift-event span {
+}*/
+
+/*.allocated-shift-event div {
+}
+
+.allocated-shift-event div.fc-bg {
+    background-color: #6aa4c1 !important;
+}
+
+.allocated-shift-event div.fc-content {
+    background-color: #6aa4c1 !important;
+}*/

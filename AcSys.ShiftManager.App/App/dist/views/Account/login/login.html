@@ -1,0 +1,45 @@
+<!-- begin login -->
+<div class="login bg-black animated fadeInDown" ng-controller="loginController">
+
+    <!-- begin brand -->
+    <div class="login-header">
+        <div class="brand">
+            <span class="logo"></span> GMS
+            <small>Automated System for Managing Gaurd Shifts</small>
+        </div>
+        <div class="icon">
+            <i class="fa fa-sign-in"></i>
+        </div>
+    </div>
+    <!-- end brand -->
+
+    <div class="login-content">
+        <form name="form" class="margin-bottom-0" ng-submit="submitForm(form)" novalidate>
+
+            <div class="form-group m-b-20">
+                <input type="text" ng-model="model.username" name="username" class="form-control input-lg" placeholder="Email Address" required />
+
+                <span ng-show="form.$submitted || form.username.$touched">
+                    <span ng-show="form.username.$error.required" class="text-danger">Enter your username.</span>
+                    <!--<span ng-show="form.username.$error.email" class="text-danger">This is not a valid email.</span>-->
+                </span>
+            </div>
+            <div class="form-group m-b-20">
+                <input type="password" ng-model="model.password" name="password" class="form-control input-lg" placeholder="Password" required />
+
+                <span ng-show="form.$submitted || form.password.$touched">
+                    <span ng-show="form.password.$error.required" class="text-danger">Enter your password.</span>
+                </span>
+            </div>
+            <div class="checkbox m-b-20">
+                <label>
+                    <input type="checkbox" ng-model="model.rememberMe" /> Remember Me
+                </label>
+            </div>
+            <div class="login-buttons">
+                <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- end login -->

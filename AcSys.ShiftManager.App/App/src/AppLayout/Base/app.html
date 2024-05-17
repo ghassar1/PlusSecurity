@@ -1,0 +1,70 @@
+<!-- begin #header -->
+<div ng-if="setting.layout.pageWithoutHeader === false" ng-include src="'App/dist/views/AppLayout/Header/header.html'"></div>
+<!-- end #header -->
+
+<div ng-if="setting.layout.pageTopMenu">
+    <!-- begin #top-menu -->
+    <div ng-include src="'App/dist/views/AppLayout/Menu/top-menu.html'"></div>
+    <!-- end #top-menu -->
+</div>
+
+<div ng-if="setting.layout.pageWithoutSidebar === false">
+    <!-- begin #sidebar -->
+    <div ng-include src="'App/dist/views/AppLayout/Sidebar/sidebar.html'"></div>
+    <!-- end #sidebar -->
+</div>
+
+<!-- begin #content -->
+<div id="content" view-content class="content" ng-class="{
+    'content-full-width': setting.layout.pageContentFullWidth,
+    'height-full': setting.layout.pageContentFullHeight,
+    'content-inverse-mode': setting.layout.pageContentInverseMode
+}">
+
+    <!-- begin breadcrumb -->
+    <!--<ol ng-if="breadcrumbs && breadcrumbs.list && breadcrumbs.list.length > 0" class="breadcrumb pull-right">
+        <li ng-repeat="bc in breadcrumbs.list">
+            <a ng-if="bc.href" href="{{bc.href}}">{{bc.text}}</a>
+            <span ng-if="!bc.href">{{bc.text}}</span>
+        </li>
+    </ol>-->
+    <breadcrumbs ng-if="breadcrumbs && breadcrumbs.list && breadcrumbs.list.length > 0" list="breadcrumbs.list" textProperty="text" hrefProperty="href"></breadcrumbs>
+    <!-- end breadcrumb -->
+
+    <!-- begin page-header -->
+    <h1 class="page-header">{{currentPage.title}}<small>...</small></h1>
+    <!-- end page-header -->
+    
+    <!-- begin notificatoin messages -->
+    <notifications messages="notifications.messages" errors="notifications.errors"></notifications>
+    <!-- end notificatoins messages -->
+
+    <!-- https://codepen.io/MattIn4D/pen/LiKFC -->
+    <!--<div ng-if="requestInProcess" class="loading">Loading&#8230;</div>-->
+    <div class="loading" loading>Loading&#8230;</div>
+    <div ui-view></div>
+
+</div>
+<!-- end #content -->
+
+<div ng-if="setting.layout.pageWithFooter === true">
+    <!-- begin #footer -->
+    <div id="footer" class="footer">
+        &copy; 2014 Color Admin Responsive Admin . - Sean Ngu All Rights Reserved
+    </div>
+    <!-- end #footer -->
+</div>
+
+<div ng-if="setting.layout.pageTwoSidebar === true">
+    <!-- begin #sidebar-right -->
+    <div ng-include src="'App/dist/views/AppLayout/Sidebar/sidebar-right.html'"></div>
+    <!-- end #sidebar-right -->
+</div>
+
+<!-- begin #theme-panel -->
+<!--<div ng-include src="'App/dist/views/AppLayout/ThemePanel/theme-panel.html'"></div>-->
+<!-- end #theme-panel -->
+
+<!-- begin scroll to top btn -->
+<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+<!-- end scroll to top btn -->

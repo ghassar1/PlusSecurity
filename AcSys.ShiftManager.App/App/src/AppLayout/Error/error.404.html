@@ -1,0 +1,18 @@
+﻿<!-- begin error -->
+<div class="error" ng-controller="errorController">
+    <div class="error-code m-b-10">404 <i class="fa fa-warning"></i></div>
+    <div class="error-content">
+        <div class="error-message">We couldn't find the page{{path ? ' at ' + path + '' : ''}}</div>
+        <div class="error-desc m-b-20">
+            The page you're looking for doesn't exist. <br />
+            Perhaps, there pages will help find what you're looking for.
+        </div>
+        <div>
+            <!--<button onclick="history.go(-1);" class="btn btn-success">Go Back to Last Page</button>-->
+            <!--<a onclick="window.history.back();" class="btn btn-success">Go Back to Last Page</a>-->
+            <a onclick="window.history.go(-2);" class="btn btn-success">Go Back to Last Page</a>
+            <a ng-href="{{ getDashboardUrl() }}" class="btn btn-primary">Go to Dashboard</a>
+        </div>
+    </div>
+</div>
+<!-- end error -->

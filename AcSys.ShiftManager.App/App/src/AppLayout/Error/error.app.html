@@ -1,0 +1,30 @@
+﻿<!-- begin error -->
+<div class="error" ng-controller="errorController">
+    <div class="error-code m-b-10">Error <i class="fa fa-warning"></i></div>
+    <div class="error-content">
+        <div class="error-message">Something went wrong...</div>
+        <div class="error-desc m-b-20">
+            There was an error on the page you're visiting. The error has been reported to the developers via email.<br />
+            If you continue getting this error, please contact the system developers.<br />
+            Sincere apologies for the trouble.
+            <br />
+            <div ng-if="errorMessage">
+
+                {{ errorMessage ? errorMessage : 'Error' }}: <br />
+
+                <span ng-if="message">Message: {{errorMessage}}</span><br />
+
+                <!--<span ng-if="error.message">Message: {{error.message}}</span><br />
+                <span ng-if="error.exceptionType">Exception Type: {{error.exceptionType}}</span><br />
+                <span ng-if="error.exceptionMessage">Exception Message: {{error.exceptionMessage}}</span><br />-->
+            </div>
+        </div>
+        <div>
+            <!--<button onclick="history.go(-1);" class="btn btn-success">Go Back to Last Page</button>-->
+            <!--<a onclick="window.history.back();" class="btn btn-success">Go Back to Last Page</a>-->
+            <a onclick="window.history.go(-2);" class="btn btn-success">Go Back to Last Page</a>
+            <a ng-href="{{ getDashboardUrl() }}" class="btn btn-primary">Go to Dashboard</a>
+        </div>
+    </div>
+</div>
+<!-- end error -->

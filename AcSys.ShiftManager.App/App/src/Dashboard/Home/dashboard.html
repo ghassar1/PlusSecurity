@@ -1,0 +1,405 @@
+﻿<div ng-controller="dashboardController">
+
+    <div class="row">
+
+        <div class="col-md-12 col-sm-12">
+
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>-->
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>-->
+                    </div>
+                    <h4 class="panel-title">Weekly Shift Stats</h4>
+                </div>
+                <div class="panel-body">
+
+                    <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                        <div class="widget widget-stats bg-green">
+                            <div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"></i></div>
+                            <div class="stats-title">Completed / Total</div>
+                            <div class="stats-number">{{model.currentWeekStats.completed}} / {{model.currentWeekStats.total}}</div>
+                            <div class="stats-progress progress">
+                                <div class="progress-bar" style="width: {{model.currentWeekStats.completedPercentage}}%;"></div>
+                            </div>
+                            <div class="stats-desc">Completed Percentage: {{model.currentWeekStats.completedPercentage}}%</div>
+                        </div>
+                    </div>
+
+                    <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                        <div class="widget widget-stats bg-red-lighter">
+                            <div class="stats-icon stats-icon-lg"><i class="fa fa-comments fa-fw"></i></div>
+                            <div class="stats-title">Completed / OnTime / Late</div>
+                            <div class="stats-number">{{model.currentWeekStats.completed}} / {{model.currentWeekStats.onTime}} / {{model.currentWeekStats.late}}</div>
+                            <div class="stats-progress progress">
+                                <div class="progress-bar" style="width: {{model.currentWeekStats.latePercentage}}%;"></div>
+                            </div>
+                            <div class="stats-desc">Late Percentage: {{model.currentWeekStats.latePercentage}}%</div>
+                        </div>
+                    </div>
+
+                    <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                        <div class="widget widget-stats bg-red">
+                            <div class="stats-icon stats-icon-lg"><i class="fa fa-tags fa-fw"></i></div>
+                            <div class="stats-title">Missed / Total</div>
+                            <div class="stats-number">{{model.currentWeekStats.missed}} / {{model.currentWeekStats.total}}</div>
+                            <div class="stats-progress progress">
+                                <div class="progress-bar" style="width: {{model.currentWeekStats.missedPercentage}}%;"></div>
+                            </div>
+                            <div class="stats-desc">Missed Percentage: {{model.currentWeekStats.missedPercentage}}%</div>
+                        </div>
+                    </div>
+
+                    <div class="col col-lg-3 col-md-6 col-sm-6 col-xs-6">
+                        <div class="widget widget-stats bg-black-lighter">
+                            <div class="stats-icon stats-icon-lg"><i class="fa fa-tags fa-fw"></i></div>
+                            <div class="stats-title">Due / Total</div>
+                            <div class="stats-number">{{model.currentWeekStats.due}} / {{model.currentWeekStats.total}}</div>
+                            <div class="stats-progress progress">
+                                <div class="progress-bar" style="width: {{model.currentWeekStats.duePercentage}}%;"></div>
+                            </div>
+                            <div class="stats-desc">Due Percentage: {{model.currentWeekStats.duePercentage}}%</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-12 col-sm-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>-->
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>-->
+                    </div>
+                    <h4 class="panel-title">Attendance Trends</h4>
+                </div>
+                <div class="panel-body">
+
+                    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                        <h4 class="text-center">Last Month</h4>
+                        <ng-morris-donut-chart chart-options="morrisDonutChart.options"
+                                               chart-data="morrisDonutChart.completedLastMonth">
+                        </ng-morris-donut-chart>
+                    </div>
+
+                    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                        <h4 class="text-center">This Month</h4>
+                        <!--<div id="morris-donut-chart" class="height-sm"></div>-->
+                        <ng-morris-donut-chart chart-options="morrisDonutChart.options"
+                                               chart-data="morrisDonutChart.completedThisMonth">
+                        </ng-morris-donut-chart>
+                    </div>
+
+                    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                        <h4 class="text-center">Last Month</h4>
+                        <!--<div id="morris-donut-chart1" class="height-sm"></div>-->
+                        <ng-morris-donut-chart chart-options="morrisDonutChart.options"
+                                               chart-data="morrisDonutChart.lateLastMonth">
+                        </ng-morris-donut-chart>
+                    </div>
+
+                    <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                        <h4 class="text-center">This Month</h4>
+                        <!--<ng-morris-bar-chart chart-options="morrisBarChart.options"
+                             chart-data="morrisBarChart.data">
+                        </ng-morris-bar-chart>-->
+                        <ng-morris-donut-chart chart-options="morrisDonutChart.options"
+                                               chart-data="morrisDonutChart.lateThisMonth">
+                        </ng-morris-donut-chart>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>-->
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>-->
+                    </div>
+                    <h4 class="panel-title">Attendance/Late Trends</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="col col-xs-12 col-md-12 col-lg-12">
+                        <p>
+                            This chart compares the attended shifts each month and the number of late starts.
+                        </p>
+                        <!--<canvas chart="Bar" options="barChart.options" data="barChart.data"></canvas>-->
+                        <canvas id="bar" class="chart chart-bar" chart-options="barChart.options" chart-data="barChart.data" 
+                                chart-labels="barChart.labels" chart-series="barChart.series" chart-colors="barChart.colors">
+                        </canvas>
+                    </div>
+
+                    <!--<div class="col col-xs-12 col-md-6 col-lg-3">
+                        <h4 class="text-center">Attendance This Week</h4>
+                        <ng-morris-donut-chart chart-options="morrisDonutChart.options"
+                                               chart-data="morrisDonutChart.completedThisWeek">
+                        </ng-morris-donut-chart>
+                    </div>
+
+                    <div class="col col-xs-12 col-md-6 col-lg-3">
+                        <h4 class="text-center">Late This Week</h4>
+                        <ng-morris-donut-chart chart-options="morrisDonutChart.options"
+                                               chart-data="morrisDonutChart.lateThisWeek">
+                        </ng-morris-donut-chart>
+                    </div>-->
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col col-sm-12 col-md-12 col-lg-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>-->
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>-->
+                    </div>
+                    <h4 class="panel-title">Recent Emails</h4>
+                </div>
+                <div class="panel-body">
+
+                    <ul class="media-list media-list-with-divider">
+                        <li class="media media-sm" ng-repeat="message in model.messages">
+                            <!--<a ui-sref="app.messages.inbox.view({id: message.id})" class="pull-left">
+                                <img src="assets/img/user-1.jpg" alt="" class="media-object rounded-corner">
+                            </a>-->
+                            <div class="media-body">
+                                <a ui-sref="app.messages.inbox.view({id: message.id})"><h4 class="media-heading">{{message.subject}}</h4></a>
+                                <!--<p class="m-b-5">{{message.text}}</p>-->
+                                <i class="text-muted">Received on {{message.sentAt | date:'dd MMMM, yyyy hh:mm a'}}</i>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="col-md-8">
+            <div class="widget-chart with-sidebar bg-black">
+                <div class="widget-chart-content">
+                    <h4 class="chart-title">
+                        Visitors Analytics
+                        <small>Where do our visitors come from</small>
+                    </h4>
+                    <div id="visitors-line-chart" class="morris-inverse" style="height: 260px;"></div>
+                </div>
+                <div class="widget-chart-sidebar bg-black-darker">
+                    <div class="chart-number">
+                        1,225,729
+                        <small>visitors</small>
+                    </div>
+                    <div id="visitors-donut-chart" style="height: 160px"></div>
+                    <ul class="chart-legend">
+                        <li><i class="fa fa-circle-o fa-fw text-success m-r-5"></i> 34.0% <span>New Visitors</span></li>
+                        <li><i class="fa fa-circle-o fa-fw text-primary m-r-5"></i> 56.0% <span>Return Visitors</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        Visitors Origin
+                    </h4>
+                </div>
+                <div id="visitors-map" class="bg-black" style="height: 181px;"></div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-inverse text-ellipsis">
+                        <span class="badge badge-success">20.95%</span>
+                        1. United State
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-inverse text-ellipsis">
+                        <span class="badge badge-primary">16.12%</span>
+                        2. India
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-inverse text-ellipsis">
+                        <span class="badge badge-inverse">14.99%</span>
+                        3. South Korea
+                    </a>
+                </div>
+            </div>
+        </div>-->
+        <!--<div class="col col-sm-12 col-md-12 col-lg-12">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        Visitors Origin
+                    </h4>
+                </div>
+                <div id="visitors-map" class="bg-black" style="height: 250px;"></div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-inverse text-ellipsis">
+                        <span class="badge badge-success">20.95%</span>
+                        1. United State
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-inverse text-ellipsis">
+                        <span class="badge badge-primary">16.12%</span>
+                        2. India
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-inverse text-ellipsis">
+                        <span class="badge badge-inverse">14.99%</span>
+                        3. South Korea
+                    </a>
+                </div>
+            </div>
+        </div>-->
+        <!--<div class="col-md-4">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Chat History <span class="label label-success pull-right">4 message</span></h4>
+                </div>
+                <div class="panel-body bg-silver">
+                    <div data-scrollbar="true" data-height="225px">
+                        <ul class="chats">
+                            <li class="left">
+                                <span class="date-time">yesterday 11:23pm</span>
+                                <a href="javascript:;" class="name">Sowse Bawdy</a>
+                                <a href="javascript:;" class="image"><img alt="" src="/App/ColorAdmin/assets/img/user-12.jpg" /></a>
+                                <div class="message">
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit volutpat. Praesent mattis interdum arcu eu feugiat.
+                                </div>
+                            </li>
+                            <li class="right">
+                                <span class="date-time">08:12am</span>
+                                <a href="#" class="name"><span class="label label-primary">ADMIN</span> Me</a>
+                                <a href="javascript:;" class="image"><img alt="" src="/App/ColorAdmin/assets/img/user-13.jpg" /></a>
+                                <div class="message">
+                                    Nullam posuere, nisl a varius rhoncus, risus tellus hendrerit neque.
+                                </div>
+                            </li>
+                            <li class="left">
+                                <span class="date-time">09:20am</span>
+                                <a href="#" class="name">Neck Jolly</a>
+                                <a href="javascript:;" class="image"><img alt="" src="/App/ColorAdmin/assets/img/user-10.jpg" /></a>
+                                <div class="message">
+                                    Euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                </div>
+                            </li>
+                            <li class="left">
+                                <span class="date-time">11:15am</span>
+                                <a href="#" class="name">Shag Strap</a>
+                                <a href="javascript:;" class="image"><img alt="" src="/App/ColorAdmin/assets/img/user-14.jpg" /></a>
+                                <div class="message">
+                                    Nullam iaculis pharetra pharetra. Proin sodales tristique sapien mattis placerat.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <form name="send_message_form" data-id="message-form">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-sm" name="message" placeholder="Enter your message here.">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btn-sm" type="button">Send</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>-->
+        <!--<div class="col-md-4">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Today's Schedule</h4>
+                </div>
+                <div id="schedule-calendar" class="bootstrap-calendar"></div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item text-ellipsis">
+                        <span class="badge badge-success">9:00 am</span> Sales Reporting
+                    </a>
+                    <a href="#" class="list-group-item text-ellipsis">
+                        <span class="badge badge-primary">2:45 pm</span> Have a meeting with sales team
+                    </a>
+                </div>
+            </div>
+        </div>-->
+        <!--<div class="col-md-4">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <h4 class="panel-title">New Registered Users <span class="pull-right label label-success">24 new users</span></h4>
+                </div>
+                <ul class="registered-users-list clearfix">
+                    <li>
+                        <a href="javascript:;"><img src="/App/ColorAdmin/assets/img/user-5.jpg" alt="" /></a>
+                        <h4 class="username text-ellipsis">
+                            Savory Posh
+                            <small>Algerian</small>
+                        </h4>
+                    </li>
+                    <li>
+                        <a href="javascript:;"><img src="/App/ColorAdmin/assets/img/user-3.jpg" alt="" /></a>
+                        <h4 class="username text-ellipsis">
+                            Ancient Caviar
+                            <small>Korean</small>
+                        </h4>
+                    </li>
+                    <li>
+                        <a href="javascript:;"><img src="/App/ColorAdmin/assets/img/user-1.jpg" alt="" /></a>
+                        <h4 class="username text-ellipsis">
+                            Marble Lungs
+                            <small>Indian</small>
+                        </h4>
+                    </li>
+                    <li>
+                        <a href="javascript:;"><img src="/App/ColorAdmin/assets/img/user-8.jpg" alt="" /></a>
+                        <h4 class="username text-ellipsis">
+                            Blank Bloke
+                            <small>Japanese</small>
+                        </h4>
+                    </li>
+                    <li>
+                        <a href="javascript:;"><img src="/App/ColorAdmin/assets/img/user-2.jpg" alt="" /></a>
+                        <h4 class="username text-ellipsis">
+                            Hip Sculling
+                            <small>Cuban</small>
+                        </h4>
+                    </li>
+                    <li>
+                        <a href="javascript:;"><img src="/App/ColorAdmin/assets/img/user-6.jpg" alt="" /></a>
+                        <h4 class="username text-ellipsis">
+                            Flat Moon
+                            <small>Nepalese</small>
+                        </h4>
+                    </li>
+                    <li>
+                        <a href="javascript:;"><img src="/App/ColorAdmin/assets/img/user-4.jpg" alt="" /></a>
+                        <h4 class="username text-ellipsis">
+                            Packed Puffs
+                            <small>Malaysian></small>
+                        </h4>
+                    </li>
+                    <li>
+                        <a href="javascript:;"><img src="/App/ColorAdmin/assets/img/user-9.jpg" alt="" /></a>
+                        <h4 class="username text-ellipsis">
+                            Clay Hike
+                            <small>Swedish</small>
+                        </h4>
+                    </li>
+                </ul>
+                <div class="panel-footer text-center">
+                    <a href="javascript:;" class="text-inverse">View All</a>
+                </div>
+            </div>
+        </div>-->
+
+    </div>
+</div>

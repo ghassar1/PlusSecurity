@@ -1,0 +1,143 @@
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>-->
+                </div>
+                <h4 class="panel-title">{{currentPage.title}}</h4>
+            </div>
+
+            <div class="panel-body">
+                <form class="form-horizontal form-bordered" name="form" ng-submit="create(form)" novalidate>
+                    <div class="form-group col col-sm-9">
+
+                        <div class="control-group">
+                            <label class="control-label"><strong>Type <span class="text-danger">*</span></strong></label>
+                            <div class="controls">
+                                <label class="radio-inline">
+                                    <input type="radio" name="typeOpen" ng-model="formData.type" value="open" checked="checked">Open
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="typeAllocated" ng-model="formData.type" value="allocated" checked="">Allocated
+                                </label>
+                            </div>
+                        </div>
+
+                        <!--<div class="control-group">
+                <label class="control-label"><strong>Employee/Group <span class="text-danger">*</span></strong></label>
+                <div class="controls">
+                    <select ng-model="formData.employeeGroup" name="employeeGroup" class="form-control"
+                            ng-options="employeeGroup as employeeGroup.name for employeeGroup in employeeGroups track by employeeGroup.id">
+                        <option value="" ng-selected="selected">Open</option>
+                    </select>
+                </div>
+            </div>-->
+
+                        <div ng-if="formData.type === 'allocated'" class="control-group">
+                            <label class="control-label"><strong>Employees: <span class="text-danger">*</span></strong></label>
+                            <div class="controls">
+                                <tags-input name="employeesAndGroups" ng-model="selectedEmployeesAndGroups" ng-blur="validate(form)"
+                                            display-property="text" key-property="id" type="text" replace-spaces-with-dashes="false"
+                                            add-from-autocomplete-only="true" add-on-enter="true" add-on-space="true" add-on-comma="true" add-on-blur="true" add-on-paste="true"
+                                            min-length="0" max-length="1000" min-tags="1" max-tags="1000" allow-leftover-text="false"
+                                            spellcheck="true" placeholder="Select Employees or Groups">
+                                    <auto-complete source="loadTags($query)" display-property="text" debounce-delay="100" min-length="1" max-results-to-show="10"
+                                                   highlight-matched-text="true" load-on-down-arrow="true" load-on-empty="true" select-first-match="true">
+                                    </auto-complete>
+                                </tags-input>
+                            </div>
+                        </div>
+
+                        <div ng-if="formData.type === 'open'" class="control-group">
+                            <label class="control-label"><strong>Shifts Per Day <span class="text-danger">*</span></strong></label>
+                            <div class="controls">
+                                <input type="text" class="form-control" ng-model="formData.shiftsPerDay" name="shiftsPerDay" placeholder="Required" required />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="controls">
+                                <div class="col col-sm-6">
+                                    <label class="control-label"><strong>Shift Starts At</strong></label>
+                                    <div uib-timepicker ng-model="timePicker.startTime" ng-change="startTimeChanged()" hour-step="timePickerOptions.hstep" minute-step="timePickerOptions.mstep" show-meridian="timePickerOptions.ismeridian"></div>
+                                </div>
+                                <div class="col col-sm-6">
+                                    <label class="control-label"><strong>Shift Ends At</strong></label>
+                                    <div uib-timepicker ng-model="timePicker.endTime" ng-change="endTimeChanged()" hour-step="timePickerOptions.hstep" minute-step="timePickerOptions.mstep" show-meridian="timePickerOptions.ismeridian"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label"><strong>Shift Title <span class="text-danger">*</span></strong></label>
+                            <div class="controls">
+                                <input type="text" class="form-control" ng-model="formData.title" name="title" placeholder="Required" required />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label"><strong>Break (Mins) <span class="text-danger">*</span></strong></label>
+                            <div class="controls">
+                                <input type="text" class="form-control" ng-model="formData.totalBreakMins" name="breakMins" placeholder="Required" />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label"><strong>Date Range <span class="text-danger">*</span></strong></label>
+                            <div class="controls">
+                                <input date-range-picker class="form-control date-picker" type="text"
+                                       ng-model="datePicker.date" options="datePicker.options"
+                                       min="''" max="''" placeholder="Date Range" />
+                            </div>
+                        </div>
+
+                        <!--<div ng-if="dateRangeHasMultipleDays" class="form-group">
+                            <label class="control-label"><strong>Days of Week <span class="text-danger">*</span></strong></label>
+                            <div class="controls">
+                                <div class="col-sm-6">
+                                    <div ng-repeat="day in daysOfWeek">
+                                        <label><input ng-disabled="!day['enabled']" type="checkbox" ng-model="day['checked']"> {{day.name}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button type="button" class="btn btn-success btn-block" ng-click="checkWeekdays()">Weekdays</button>
+                                    <button type="button" class="btn btn-success btn-block" ng-click="checkWeekends()">Weekends</button>
+                                    <button type="button" class="btn btn-success btn-block" ng-click="checkAllDays()">Check All</button>
+                                    <button type="button" class="btn btn-success btn-block" ng-click="uncheckAllDays()">Uncheck All</button>
+                                    <button type="button" class="btn btn-success btn-block" ng-click="invertCheckedDays()">Invert Checks</button>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div ng-if="dateRangeHasMultipleDays" class="form-group">
+                            <week-days-selection ng-model="formData.days" enabled-days="enabledDays"></week-days-selection>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label"><strong>Notes</strong></label>
+                            <div class="controls">
+                                <textarea name="notes" ng-model="formData.notes" ng-blur="validate(form)"
+                                          rows="5" class="form-control" placeholder="Notes [Only visible to shift employee]"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col col-sm-3">
+                        <h4>Actions</h4>
+                        <button type="submit" class="btn btn-lg btn-block btn-success">Create</button>
+                        <a ui-sref="app.shifts.list" class="btn btn-lg btn-block btn-default">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-12 -->
+</div>
+<!-- end row -->

@@ -1,0 +1,85 @@
+﻿<!-- begin row -->
+<div class="row">
+    <!-- begin col-12 -->
+    <div class="col-md-12">
+        <!-- begin panel -->
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <!--<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>-->
+                </div>
+                <h4 class="panel-title">{{currentPage.title}}</h4>
+            </div>
+            <div class="panel-body">
+                <form name="form" class="form-horizontal form-bordered margin-bottom-0" ng-submit="create(form)" novalidate>
+
+                    <div class="form-group col col-sm-9">
+
+                        <div class="control-group">
+                            <h5><strong class="">To: </strong></h5>
+                            <div class="controls">
+                                <tags-input name="recipients" ng-model="formData.recipients" ng-blur="validate(form)"
+                                            display-property="text" key-property="id" type="text" replace-spaces-with-dashes="false"
+                                            add-from-autocomplete-only="true" add-on-enter="true" add-on-space="true" add-on-comma="true" add-on-blur="true" add-on-paste="true"
+                                            min-length="0" max-length="1000" min-tags="1" max-tags="1000" allow-leftover-text="false"
+                                            spellcheck="true" placeholder="Enter Recipients">
+                                    <auto-complete source="loadTags($query)" display-property="text" debounce-delay="100" min-length="1" max-results-to-show="10"
+                                                   highlight-matched-text="true" load-on-down-arrow="true" load-on-empty="false" select-first-match="true">
+                                    </auto-complete>
+                                </tags-input>
+                            </div>
+                        </div>
+
+                        <!--<div class="control-group">
+                            <h5><strong class="col-sm-3">To: </strong></h5>
+                            <div class="col-sm-9">
+                                <ul id="jquery-tagIt-recipients">
+                                    <li ng-repeat="recipient in recipients" class="tagit-choice ui-widget-content ui-state-default ui-corner-all tagit-choice-editable">
+                                        {{recipient}}
+                                    </li>
+
+                                    <li>
+                                        <span class="tagit-label">brand-new-tag</span>
+                                        <a class="tagit-close">
+                                            <span class="text-icon">×</span>
+                                            <span class="ui-icon ui-icon-close"></span>
+                                        </a>
+                                        <input type="hidden" value="brand-new-tag" name="recipients" class="tagit-hidden-field" pmbx_context="4B90E61D-35A8-4E3C-BD76-8D9984BE4E4C">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>-->
+
+                        <div class="control-group">
+                            <h5><strong class="">Subject: </strong></h5>
+                            <div class="controls">
+                                <input type="text" name="subject" class="form-control" placeholder="Subject" required
+                                       ng-model="formData.subject" ng-blur="validate(form)" />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <!--<b class="col-sm-3">Text: </b><br />-->
+                            <h5><strong class="">Message: </strong></h5>
+                            <div class="controls">
+                                <textarea name="text" ng-model="formData.text" ng-blur="validate(form)"
+                                          rows="20" class="form-control" placeholder="Message Text" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col col-sm-3">
+                        <h4>Actions</h4>
+                        <button type="submit" href="javascript:;" class="btn btn-lg btn-block btn-success">Send</button>
+                        <a href="javascript:;" ui-sref="app.messages.inbox.list" class="btn btn-lg btn-block btn-default">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+    <!-- end col-12 -->
+</div>
+<!-- end row -->

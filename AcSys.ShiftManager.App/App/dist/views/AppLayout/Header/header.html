@@ -1,0 +1,86 @@
+<!-- begin #header -->
+<div id="header" class="header navbar navbar-default navbar-fixed-top" ng-controller="headerController">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+
+        <!-- begin mobile sidebar expand / collapse button -->
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand"><span class="navbar-logo"></span>ActiveShifts</a>
+            <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <!-- end mobile sidebar expand / collapse button -->
+        
+        <!-- begin header navigation right -->
+        <ul class="nav navbar-nav navbar-right">
+
+            <!-- begin search box -->
+            <!--<li>
+                <form class="navbar-form full-width">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter keyword" />
+                        <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+                    </div>
+                </form>
+            </li>-->
+            <!-- end search box -->
+
+            <!-- begin notifications dropdown -->
+            <li class="dropdown" ng-if="User.hasLoggedIn() && headerNotifications && headerNotifications.length > 0">
+                <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle f-s-14">
+                    <i class="fa fa-bell-o"></i>
+                    <span class="label">{{headerNotifications.length}}</span>
+                </a>
+                <ul class="dropdown-menu media-list pull-right animated fadeInDown">
+                    <li class="dropdown-header">Notifications ({{headerNotifications.length}})</li>
+                    <li class="media" ng-repeat="notice in headerNotifications">
+                        <a href="javascript:;" ng-if="!notice.isMessage" ui-sref="app.notifications.view({id: notice.id})">
+                            <div class="media-left"><i class="fa fa-exclamation"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">{{notice.title}}</h6>
+                                <div class="text-muted f-s-11">{{notice.sentAt | date:'yy MMMM yyyy'}}</div>
+                                <div>{{notice.sender}}</div>
+                            </div>
+                        </a>
+                        <a href="javascript:;" ng-if="notice.isMessage" ui-sref="app.messages.inbox.view({id: notice.id})">
+                            <div class="media-left"><i class="fa fa-envelope"></i></div>
+                            <div class="media-body">
+                                <h6 class="media-heading">{{notice.title}}</h6>
+                                <div class="text-muted f-s-11">{{notice.sentAt | date:'yy MMMM yyyy'}}</div>
+                                <div>{{notice.sender}}</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="dropdown-footer text-center">
+                        <a href="javascript:;" ui-sref="app.notifications.list">View more</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- end notifications dropdown -->
+
+            <!-- begin user dropdown -->
+            <li class="dropdown navbar-user" ng-if="User.hasLoggedIn()">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="/App/ColorAdmin/assets/img/user-13.jpg" alt="" /> 
+                    <span class="hidden-xs">{{User.Name}}</span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu animated fadeInLeft">
+                    <li class="arrow"></li>
+                    <li><a href="javascript:;" ui-sref="app.account.profile">View Profile</a></li>
+                    <!--<li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
+                    <li><a href="javascript:;">Calendar</a></li>
+                    <li><a href="javascript:;">Setting</a></li>-->
+                    <li class="divider"></li>
+                    <li><a href="javascript:;" ui-sref="app.account.logout">Log Out</a></li>
+                </ul>
+            </li>
+            <!-- begin user dropdown -->
+        </ul>
+        <!-- end header navigation right -->
+    </div>
+    <!-- end container-fluid -->
+</div>
+<!-- end #header -->

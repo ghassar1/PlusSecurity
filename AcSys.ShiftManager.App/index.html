@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" ng-app="app">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title data-ng-bind="'ActiveShifts | ' + $state.current.data.pageTitle">AngularJS</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<!--<link href="App/ColorAdmin/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+	<link href="App/ColorAdmin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />-->
+	<link href="App/dist/css/jquery-ui.min.css" rel="stylesheet" />
+	<link href="App/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+	<link href="App/ColorAdmin/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="App/ColorAdmin/assets/css/animate.min.css" rel="stylesheet" />
+	<link href="App/ColorAdmin/assets/css/style.min.css" rel="stylesheet" />
+	<link href="App/ColorAdmin/assets/css/style-responsive.min.css" rel="stylesheet" />
+	<link href="App/ColorAdmin/assets/css/theme/default.css" rel="stylesheet" id="theme" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	<!-- ================== BEGIN PLUGINS STYLE ================== -->
+	<link href="App/ColorAdmin/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" id="gritter_css_link" />
+	<link href="App/dist/css/ui-bootstrap-csp.css" rel="stylesheet" id="ui-bootstrap_css_link" />
+
+	<link href="App/dist/css/ng-tags-input.min.css" rel="stylesheet" id="ui-ngTagsInput_css_link" />
+	<link href="App/dist/css/angular-datatables.min.css" rel="stylesheet" id="ui-datatables_css_link" />
+	<link href="App/dist/css/daterangepicker.css" rel="stylesheet" id="daterangepicker_css_link" />
+	<link href="App/dist/css/select.min.css" rel="stylesheet" id="ui-select_css_link" />
+	<link href="App/dist/css/fullcalendar.min.css" rel="stylesheet" id="fullcalendar_css_link" />
+	<link href="App/dist/css/scheduler.min.css" rel="stylesheet" id="fullcalendar_scheduler_css_link" />
+	<link href="App/dist/css/angular-ui-switch.min.css" rel="stylesheet" id="angular-ui-switch_css_link" />
+
+	<link href="App/dist/css/app.min.css" rel="stylesheet" id="app_css_link" />
+	<!-- ================== END PLUGINS STYLE ================== -->
+</head>
+<body ng-controller="appController" ng-class="{'pace-top': setting.layout.paceTop, 'boxed-layout': setting.layout.pageBoxedLayout, 'bg-white': setting.layout.pageBgWhite }">
+
+	<!-- begin #page-loader -->
+	<div id="page-loader" ng-controller="pageLoaderController" class="fade in"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	<!-- begin #page-container -->
+	<div id="page-container" class="page-container page-sidebar-fixed page-header-fixed fade"
+		 ng-class="{
+			'page-sidebar-minified': setting.layout.pageSidebarMinified,
+			'page-content-full-height': setting.layout.pageContentFullHeight,
+			'page-footer-fixed': setting.layout.pageFixedFooter,
+			'page-with-right-sidebar': setting.layout.pageRightSidebar,
+			'page-sidebar-minified': setting.layout.pageSidebarMinified,
+			'page-with-two-sidebar': setting.layout.pageTwoSidebar,
+			'page-right-sidebar-toggled': setting.layout.pageTwoSidebar,
+			'page-with-top-menu': setting.layout.pageTopMenu,
+			'page-without-sidebar': setting.layout.pageWithoutSidebar,
+			'page-with-wide-sidebar': setting.layout.pageWideSidebar,
+			'page-with-light-sidebar': setting.layout.pageLightSidebar,
+			'p-t-0': setting.layout.pageWithoutHeader
+		}">
+
+		<div ui-view></div>
+	</div>
+	<!-- end page container -->
+	<!-- ================== BEGIN BASE JS ================== -->
+	<!--<script src="App/ColorAdmin/assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+	<script src="App/ColorAdmin/assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+	<script src="App/ColorAdmin/assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="App/ColorAdmin/assets/plugins/bootstrap/js/bootstrap.min.js"></script>-->
+
+	<script src="App/dist/js/underscore-min.js"></script>
+	<script src="App/dist/js/moment.min.js"></script>
+	<!--<script src="App/dist/js/moment-timezone.min.js"></script>
+	<script src="App/dist/js/moment-timezone-with-data.min.js"></script>-->
+	<script src="App/dist/js/jquery.min.js"></script>
+	<script src="App/dist/js/jquery-ui.min.js"></script>
+	<script src="App/dist/js/bootstrap.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="App/ColorAdmin/assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="App/ColorAdmin/assets/crossbrowserjs/respond.min.js"></script>
+	<![endif]-->
+	<script src="App/ColorAdmin/assets/plugins/pace/pace.min.js"></script>
+	<script src="App/ColorAdmin/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="App/ColorAdmin/assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+	<script src="App/ColorAdmin/assets/plugins/gritter/js/jquery.gritter.min.js"></script>
+
+	<!-- ================== END BASE JS ================== -->
+	<!--[if lt IE 9]>
+		<script src="App/ColorAdmin/assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<!-- ================== BEGIN BASE ANGULAR JS ================== -->
+	<!--<script src="App/ColorAdmin/assets/plugins/angularjs/angular.min.js"></script>-->
+	<!--<script src="App/ColorAdmin/assets/plugins/angularjs/angular-ui-route.min.js"></script>-->
+
+	<script src="App/dist/js/angular.min.js"></script>
+	<script src="App/dist/js/angular-ui-router.min.js"></script>
+
+	<script src="App/dist/js/angular-animate.min.js"></script>
+	<script src="App/dist/js/angular-sanitize.min.js"></script>
+
+	<script src="App/ColorAdmin/assets/plugins/angularjs/ocLazyLoad.min.js"></script>
+	<!-- ================== END BASE ANGULAR JS ================== -->
+	<!-- ================== BEGIN PLUGIN SCRIPTS ================== -->
+	<!--<script src="App/ColorAdmin/assets/plugins/bootstrap-angular-ui/ui-bootstrap-tpls.min.js"></script>-->
+	<script src="App/dist/js/ui-bootstrap.min.js"></script>
+	<script src="App/dist/js/ui-bootstrap-tpls.min.js"></script>
+
+	<script src="App/dist/js/ngStorage.min.js"></script>
+	<script src="App/dist/js/stacktrace.min.js"></script>
+
+	<script src="App/dist/js/ng-tags-input.min.js"></script>
+
+	<script src="App/dist/js/jquery.dataTables.js"></script>
+	<script src="App/dist/js/angular-datatables.min.js"></script>
+
+	<script src="App/dist/js/daterangepicker.js"></script>
+	<script src="App/dist/js/angular-daterangepicker.js"></script>
+	<script src="App/dist/js/select.min.js"></script>
+
+	<script src="App/dist/js/fullcalendar.min.js"></script>
+	<script src="App/dist/js/scheduler.min.js"></script>
+	<script src="App/dist/js/calendar.js"></script>
+
+	<script src="App/dist/js/angular-ui-switch.min.js"></script>
+
+	<!--<script src="App/dist/js/Chart.min.js"></script>
+	<script src="App/dist/js/angular-chart.min.js"></script>-->
+
+	<!-- ================== END PLUGIN SCRIPTS ================== -->
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="App/dist/js/app.min.js"></script>
+	<!-- ================== END PAGE LEVEL JS ================== -->
+</body>
+</html>
