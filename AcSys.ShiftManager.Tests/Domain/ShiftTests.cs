@@ -209,7 +209,7 @@ namespace AcSys.ShiftManager.Tests.Domain
             Role employeeRole = new Role() { Name = AppConstants.RoleNames.Employee };
             await roleRepo.AddAsync(employeeRole);
 
-            User employeeUser = new User() { Email = "adeel_scorpion@hotmail.com", FirstName = "Adeel", LastName = "Razzaq", UserName = "adeel", Mobile = "2343252", DateOfBirth = DateTime.Now.AddDays(9999) };
+            User employeeUser = new User() { Email = "mymg55@yahoo.com", FirstName = "Mohamed", LastName = "Ghassar", UserName = "ghassar", Mobile = "2343252", DateOfBirth = DateTime.Now.AddDays(9999) };
             await userRepo.AddAsync(employeeUser);
 
             DateTime startTime = new DateTime(2017, 01, 01, 9, 0, 0);

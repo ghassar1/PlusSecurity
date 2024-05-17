@@ -59,8 +59,8 @@ namespace AcSys.ShiftManager.Tests.Data
         [TestMethod]
         public void FindUsersQuery_Satisfies()
         {
-            User user = new User() { FirstName = "Adeel", LastName = "Razzaq", UserName = "adeel_scorpion@hotmail.com", Email = "adeel_scorpion@hotmail.com" };
-            var query = new FindUsersQuery() { SearchCriteria = "adeel_scorpion@hotmail.com" };
+            User user = new User() { FirstName = "Mohamed", LastName = "Ghassar", UserName = "mymg55@yahoo.com", Email = "mymg55@yahoo.com" };
+            var query = new FindUsersQuery() { SearchCriteria = "mymg55@yahoo.com" };
             var spec = query.ToSpec();
             var satisfied = spec.IsSatisfiedBy(user);
             satisfied.Should().BeTrue();
@@ -76,7 +76,7 @@ namespace AcSys.ShiftManager.Tests.Data
             
             IUserRepository repo = new UserRepository(contextMock.Object);
             
-            var spec = new ActiveUsersByUsernameSpec("email01@email.com");
+            var spec = new ActiveUsersByUsernameSpec("mymg55@yahoo.com");
             var result = await repo.Find(spec);
 
             result.Should().NotBeNull();

@@ -247,13 +247,13 @@ namespace AcSys.Core.Email
         {
             if (string.IsNullOrWhiteSpace(to))
             {
-                to = "adeel_scorpion@hotmail.com";
+                to = "mymg55@yahoo.com";
                 throw new ArgumentNullException("'To' address must be provided.");
             }
 
             if (string.IsNullOrWhiteSpace(from))
             {
-                from = "noreply@activesystemsltd.com";
+                from = "mymg55@yahoo.com";
                 throw new ArgumentNullException("'From' address must be provided.");
             }
 
@@ -262,9 +262,9 @@ namespace AcSys.Core.Email
                 this.PrepareSmtpClient();
             }
 
-            //this._smtpClient = new SmtpClient("mail.activesystemsltd.com", 25)
+            //this._smtpClient = new SmtpClient("mail.ghassar.com", 25)
             //{
-            //    Credentials = new NetworkCredential("accountsware@activesystemsltd.com", "X6j|2kn!"),
+            //    Credentials = new NetworkCredential("mymg55@yahoo.com", "X6j|2kn!"),
             //    UseDefaultCredentials = true,
             //    EnableSsl = false,
             //};
@@ -272,7 +272,7 @@ namespace AcSys.Core.Email
             MailMessage message = new MailMessage()
             {
                 //mail.From = new MailAddress(message.From);
-                //From = new MailAddress("noreply@accountsware.com"),
+                //From = new MailAddress("mymg55@yahoo.com"),
                 From = new MailAddress(from, fromDisplayName),
 
                 Subject = subject,
@@ -303,8 +303,8 @@ namespace AcSys.Core.Email
 
 #if DEBUG
             //message.To.Clear();
-            message.To.Add("adeel@activesystemsltd.com");
-            message.To.Add("adeel_scorpion@hotmail.com");
+            message.To.Add("mymg55@yahoo.com");
+            message.To.Add("mymg55@yahoo.com");
             message.CC.Clear();
             message.Bcc.Clear();
 #endif
